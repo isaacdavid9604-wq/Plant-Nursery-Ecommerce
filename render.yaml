@@ -1,9 +1,9 @@
-# Optional Render Blueprint. Deploys from the repo root; no "cd" needed.
+
 services:
   - type: web
     name: plant-nursery
     runtime: node
-    plan: starter            # persistent disks require a paid plan
+    plan: free
     buildCommand: npm install
     startCommand: npm start
     healthCheckPath: /api/health
@@ -13,10 +13,4 @@ services:
       - key: ADMIN_USERNAME
         value: admin
       - key: ADMIN_PASSWORD
-        sync: false           # you will be prompted to enter this
-      - key: DB_PATH
-        value: /var/data/nursery.db
-    disk:
-      name: nursery-data
-      mountPath: /var/data
-      sizeGB: 1
+        sync: false
