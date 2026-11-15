@@ -8,5 +8,7 @@
     "start": "node backend/src/server.js",
     "seed": "node backend/src/seed.js --reset"
   },
-  "engines": { "node": ">=18" }
+  "engines": {
+    "node": "22.x"
+  }
 }

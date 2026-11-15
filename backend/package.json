@@ -8,7 +8,9 @@
     "dev": "node --watch src/server.js",
     "seed": "node src/seed.js --reset"
   },
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": "22.x"
+  },
   "dependencies": {
     "better-sqlite3": "^11.5.0",
     "cors": "^2.8.5",
