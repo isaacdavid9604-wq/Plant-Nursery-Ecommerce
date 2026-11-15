@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - Plant Nursery Store</title>
+  <meta name="description" content="Review your selected plants, seeds, and accessories before safe nursery checkout.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom Botanical Theme CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement text-center">
+    <div class="container">
+      🌱 <strong>Free Delivery:</strong> Add $50 or more of plants to unlock free door-to-door transit!
+    </div>
+  </div>
+
+  <!-- Shared Navbar -->
+  <header>
+    <nav class="navbar navbar-expand-lg botanical-navbar sticky-top">
+      <div class="container">
+        <!-- Brand Logo -->
+        <a class='navbar-brand' href='index.html'>
+          <span class="brand-icon">
+            <i class="bi bi-flower1"></i>
+          </span>
+          Plant Nursery
+        </a>
+
+        <!-- Mobile Toggler -->
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#botanicalNav" aria-controls="botanicalNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links & Search -->
+        <div class="collapse navbar-collapse" id="botanicalNav">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-1">
+            <li class="nav-item">
+              <a class='nav-link' href='index.html'>Home</a>
+            </li>
+            <li class="nav-item">
+              <a class='nav-link' href='shop.html'>Shop Plants</a>
+            </li>
+            <li class="nav-item">
+              <a class='nav-link' href='product-detail.html?id=monstera-deliciosa'>Care & Details</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link active' href='cart.html'>Cart</a>
+            </li>
+            <li class="nav-item">
+              <a class='nav-link' href='track-order.html'>
+                <i class="bi bi-geo-alt me-1"></i> Track Order
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class='nav-link' href='admin-dashboard.html'>
+                <i class="bi bi-speedometer2 me-1"></i> Admin Portal
+              </a>
+            </li>
+          </ul>
+
+          <div class="nav-actions">
+            <a class='action-icon-btn active' href='cart.html' title='View Shopping Cart'>
+              <i class="bi bi-bag"></i>
+              <span class="cart-badge cart-counter-badge">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Page Breadcrumbs -->
+  <div class="bg-white border-bottom py-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 small">
+          <li class="breadcrumb-item"><a class='text-secondary' href='index.html'>Home</a></li>
+          <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Your Shopping Cart</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Cart Content Section -->
+  <main class="py-5">
+    <div class="container">
+      <h1 class="font-heading display-6 mb-4">Your Botanical Basket</h1>
+
+      <!-- Empty Cart State -->
+      <div id="empty-cart-state" class="text-center py-5 d-none">
+        <div class="mb-4">
+          <div class="brand-icon mx-auto" style="width: 80px; height: 80px; font-size: 2.5rem; background: var(--surface-accent);">
+            <i class="bi bi-bag-heart text-success"></i>
+          </div>
+        </div>
+        <h3 class="font-heading mb-2">Your Cart is Currently Empty</h3>
+        <p class="text-secondary max-w-500 mx-auto mb-4">
+          Looks like you haven't added any green companions yet. Explore our lush indoor collection or organic seed vaults.
+        </p>
+        <a class='btn btn-botanical btn-lg' href='/shop'>
+          <i class="bi bi-compass me-2"></i> Explore Plant Collection
+        </a>
+      </div>
+
+      <!-- Active Cart Grid Layout -->
+      <div class="row g-4" id="cart-layout-row">
+        
+        <!-- Left: Cart Items Table -->
+        <div class="col-lg-8">
+          <div class="cart-table-wrapper">
+            <div class="table-responsive">
+              <table class="table cart-table align-middle">
+                <thead>
+                  <tr>
+                    <th scope="col" style="min-width: 240px;">Plant Item</th>
+                    <th scope="col" class="text-center">Price</th>
+                    <th scope="col" class="text-center">Quantity</th>
+                    <th scope="col" class="text-end">Subtotal</th>
+                    <th scope="col" class="text-center"></th>
+                  </tr>
+                </thead>
+                <tbody id="cart-items-tbody">
+                  <!-- Rendered dynamically by main.js -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center pt-3 gap-3 border-top mt-3">
+              <a class='btn btn-sm btn-botanical-outline' href='/shop'>
+                <i class="bi bi-arrow-left me-1"></i> Continue Shopping
+              </a>
+              <button class="btn btn-sm btn-outline-danger" onclick="Cart.clearCart(); initCartPage();">
+                <i class="bi bi-trash3 me-1"></i> Empty Basket
+              </button>
+            </div>
+          </div>
+
+          <!-- Trust Badges Under Cart -->
+          <div class="row g-3 mt-2">
+            <div class="col-sm-4">
+              <div class="p-3 bg-white border rounded-3 text-center small shadow-xs">
+                <i class="bi bi-truck text-success fs-5 mb-1 d-block"></i>
+                <strong class="d-block text-dark">Eco Padded Transit</strong>
+                <span class="text-muted">Plants arrive fresh & hydrated</span>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="p-3 bg-white border rounded-3 text-center small shadow-xs">
+                <i class="bi bi-shield-check text-success fs-5 mb-1 d-block"></i>
+                <strong class="d-block text-dark">14-Day Guarantee</strong>
+                <span class="text-muted">Risk-free botanical return policy</span>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="p-3 bg-white border rounded-3 text-center small shadow-xs">
+                <i class="bi bi-lock text-success fs-5 mb-1 d-block"></i>
+                <strong class="d-block text-dark">Encrypted Checkout</strong>
+                <span class="text-muted">Bank-grade 256-bit security</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Order Summary Sticky Card -->
+        <div class="col-lg-4">
+          <div class="order-summary-card">
+            <h4 class="font-heading fs-5 mb-3">Order Summary</h4>
+
+            <!-- Promo Code Input -->
+            <div class="mb-4 pb-3 border-bottom">
+              <label class="form-label small text-muted fw-semibold">Have a Promotion Code?</label>
+              <div class="input-group">
+                <input type="text" id="promo-code-input" class="form-control" placeholder="Try 'PLANT10'" style="text-transform: uppercase;">
+                <button class="btn btn-botanical-outline" type="button" id="apply-promo-btn">Apply</button>
+              </div>
+              <small class="text-success mt-1 d-block" style="font-size: 0.78rem;">Use <strong>PLANT10</strong> for 10% discount!</small>
+            </div>
+
+            <!-- Price Breakdown -->
+            <div class="summary-row">
+              <span>Items Subtotal</span>
+              <span class="fw-semibold text-dark" id="summary-subtotal">$0.00</span>
+            </div>
+
+            <div class="summary-row d-none text-success" id="discount-summary-row">
+              <span>Spring Promo (10%)</span>
+              <span class="fw-semibold" id="summary-discount">-$0.00</span>
+            </div>
+
+            <div class="summary-row">
+              <span>Estimated Shipping</span>
+              <span class="fw-semibold text-dark" id="summary-shipping">$8.50</span>
+            </div>
+
+            <div class="summary-row">
+              <span>Estimated Tax (8%)</span>
+              <span class="fw-semibold text-dark" id="summary-tax">$0.00</span>
+            </div>
+
+            <div class="summary-row total-row">
+              <span>Total Amount</span>
+              <span id="summary-total">$0.00</span>
+            </div>
+
+            <!-- Checkout Action Trigger -->
+            <button class="btn btn-botanical btn-lg w-100 mt-4" data-bs-toggle="modal" data-bs-target="#checkoutModal">
+              <i class="bi bi-shield-lock-fill me-2"></i> Proceed to Checkout
+            </button>
+
+            <div class="text-center mt-3">
+              <small class="text-muted">
+                <i class="bi bi-credit-card me-1"></i> Supports UPI, Cards & Cash on Delivery
+              </small>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Checkout Modal Simulator -->
+  <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+        <div class="modal-header border-bottom px-4 pt-4">
+          <div>
+            <h5 class="modal-title font-heading fs-4" id="checkoutModalLabel">Complete Plant Order</h5>
+            <p class="text-secondary small mb-0">Fill in your delivery address and preferences to finalize order.</p>
+          </div>
+          <button type="button" class="btn-close" data-bs-target="#checkoutModal" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <form id="checkout-form">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold text-dark">Full Name *</label>
+                <input type="text" class="form-control" placeholder="e.g. Naman Agrawal" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold text-dark">Phone Number *</label>
+                <input type="tel" class="form-control" placeholder="+91 98765 43210" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-semibold text-dark">Delivery Street Address *</label>
+                <input type="text" class="form-control" placeholder="Flat No., Wing, Building, Society / Landmark" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold text-dark">City *</label>
+                <input type="text" class="form-control" placeholder="Nagpur" required>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label small fw-semibold text-dark">State *</label>
+                <input type="text" class="form-control" placeholder="Maharashtra" required>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label small fw-semibold text-dark">Postal Code *</label>
+                <input type="text" class="form-control" placeholder="440013" required>
+              </div>
+
+              <!-- Payment Method Selection -->
+              <div class="col-12 pt-2">
+                <label class="form-label small fw-semibold text-dark d-block">Select Payment Option:</label>
+                <div class="row g-2">
+                  <div class="col-sm-4">
+                    <label class="border rounded-3 p-3 w-100 d-flex align-items-center gap-2 cursor-pointer bg-light">
+                      <input type="radio" name="paymentMethod" value="upi" checked>
+                      <span><i class="bi bi-qr-code text-success me-1"></i> UPI / QR</span>
+                    </label>
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="border rounded-3 p-3 w-100 d-flex align-items-center gap-2 cursor-pointer bg-light">
+                      <input type="radio" name="paymentMethod" value="card">
+                      <span><i class="bi bi-credit-card text-success me-1"></i> Card / NetBanking</span>
+                    </label>
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="border rounded-3 p-3 w-100 d-flex align-items-center gap-2 cursor-pointer bg-light">
+                      <input type="radio" name="paymentMethod" value="cod">
+                      <span><i class="bi bi-cash-stack text-success me-1"></i> Pay on Delivery</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 mt-4">
+                <div class="p-3 rounded-3 bg-light text-secondary small border">
+                  <i class="bi bi-info-circle-fill text-success me-1"></i> Plants are packed in climate-regulated bio boxes on morning of shipment.
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-botanical px-4">
+                <i class="bi bi-check2-circle me-1"></i> Confirm & Place Order
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared Botanical Footer -->
+  <footer class="botanical-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand">
+            Plant <span>Nursery</span> Store
+          </div>
+          <p class="footer-text">
+            Connecting botanical enthusiasts with healthy, farm-fresh plants, organic seeds, and sustainable gardening essentials. Promoting environmental wellness and green living spaces.
+          </p>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-6">
+          <h5 class="footer-title">Navigation</h5>
+          <ul class="footer-links">
+            <li><a href='index.html'>Home</a></li>
+            <li><a href='shop.html'>Shop Catalog</a></li>
+            <li><a href='product-detail.html?id=monstera-deliciosa'>Care Guide</a></li>
+            <li><a href='cart.html'>View Cart</a></li>
+            <li><a href='track-order.html'>Track Order</a></li>
+            <li><a href='admin-dashboard.html'>Admin Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-6">
+          <h5 class="footer-title">Categories</h5>
+          <ul class="footer-links">
+            <li><a href='shop.html?category=indoor'>Indoor Plants</a></li>
+            <li><a href='shop.html?category=outdoor'>Outdoor Garden</a></li>
+            <li><a href='shop.html?category=seeds'>Organic Seeds</a></li>
+            <li><a href='shop.html?category=accessories'>Accessories & Tools</a></li>
+            <li><a href='shop.html'>All Botanical Flora</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-title">Academic Project</h5>
+          <p class="footer-text mb-2">
+            <strong>Ramdeobaba University</strong> — Dept. of CSE<br>
+            <em>Project Synopsis Session 2026-27 | 5th Semester</em>
+          </p>
+          <p class="small text-secondary mb-0">
+            <strong>Team:</strong> Naman Agrawal (51), Isaac David (64), Sara Ahmed (65)
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <div>
+          © 2026 Plant Nursery Store. All Rights Reserved.
+        </div>
+        <div class="mt-2 mt-md-0">
+          <span class="text-white-50">Botanical Commerce Design System</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Core JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>

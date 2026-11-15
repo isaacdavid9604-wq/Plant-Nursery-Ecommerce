@@ -1,0 +1,12 @@
+{
+  "name": "plant-nursery-fullstack",
+  "version": "1.0.0",
+  "description": "Plant Nursery store: static frontend + Express/SQLite backend, run from the project root",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm --prefix backend install",
+    "start": "node backend/src/server.js",
+    "seed": "node backend/src/seed.js --reset"
+  },
+  "engines": { "node": ">=18" }
+}

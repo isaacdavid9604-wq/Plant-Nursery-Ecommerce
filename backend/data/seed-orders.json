@@ -1,0 +1,192 @@
+[
+  {
+    "id": "PNS-92841",
+    "customer": "Aarav Mehta",
+    "phone": "9876543210",
+    "address": "Flat 402, Green Valley Apartments, Seminary Hills, Nagpur, Maharashtra, 440006",
+    "plant": "Monstera Deliciosa, Ceramic Planter Set",
+    "items": [
+      {
+        "id": "monstera-deliciosa",
+        "name": "Monstera Deliciosa",
+        "quantity": 1,
+        "price": 38,
+        "potSize": "Standard 8-inch",
+        "image": "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "ceramic-planter-pots",
+        "name": "Artisan Glazed Ceramic Planter Set",
+        "quantity": 1,
+        "price": 28,
+        "potSize": "Standard",
+        "image": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "amount": 66,
+    "status": "order-placed",
+    "date": "Today, 14:15",
+    "carrier": "EcoGreen Climate Express",
+    "trackingNumber": "EGL-9921401",
+    "estimatedDelivery": "In 3 Business Days",
+    "stages": {
+      "orderPlaced": "Today, 14:15 - Order received and payment confirmed",
+      "readyToShip": "Pending master gardener inspection and eco-box packing",
+      "shipped": "Scheduled for greenhouse dispatch",
+      "outForDelivery": "Pending arrival at regional depot",
+      "delivered": "Pending transit"
+    }
+  },
+  {
+    "id": "PNS-8920",
+    "customer": "Isaac David",
+    "phone": "9123456780",
+    "address": "Ramdeobaba University Campus, Katol Road, Nagpur, Maharashtra, 440013",
+    "plant": "Japanese Red Maple Bonsai, Pruning Shears Kit",
+    "items": [
+      {
+        "id": "japanese-bonsai-maple",
+        "name": "Japanese Red Maple Bonsai",
+        "quantity": 1,
+        "price": 88,
+        "potSize": "Ceramic Glazed",
+        "image": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "pruning-shears-kit",
+        "name": "Botanical Bonsai & Foliage Pruning Shears",
+        "quantity": 1,
+        "price": 24,
+        "potSize": "Standard",
+        "image": "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "amount": 112,
+    "status": "ready-to-ship",
+    "date": "Today, 11:45",
+    "carrier": "EcoGreen FastTrack",
+    "trackingNumber": "EGL-8840215",
+    "estimatedDelivery": "Tomorrow by 5:00 PM",
+    "stages": {
+      "orderPlaced": "Today, 11:45 - Order placed and verified",
+      "readyToShip": "Today, 13:20 - Botanical health checked and bio-boxed",
+      "shipped": "Awaiting courier pickup from nursery bay",
+      "outForDelivery": "Pending arrival at local distribution station",
+      "delivered": "Pending transit"
+    }
+  },
+  {
+    "id": "PNS-8919",
+    "customer": "Sara Ahmed",
+    "phone": "9988776655",
+    "address": "12 Palm Grove, Civil Lines, Nagpur, Maharashtra, 440001",
+    "plant": "Snake Plant Laurentii (x3), Macrame Hanger",
+    "items": [
+      {
+        "id": "snake-plant-laurentii",
+        "name": "Snake Plant Laurentii",
+        "quantity": 3,
+        "price": 26,
+        "potSize": "Standard 8-inch",
+        "image": "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "macrame-plant-hanger",
+        "name": "Hand-Knotted Macrame Hanging Planter",
+        "quantity": 1,
+        "price": 22.5,
+        "potSize": "Organic Cotton",
+        "image": "https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "amount": 100.5,
+    "status": "shipped",
+    "date": "Yesterday, 16:30",
+    "carrier": "GreenAir Priority Cargo",
+    "trackingNumber": "GAP-7719284",
+    "estimatedDelivery": "Tomorrow Morning",
+    "stages": {
+      "orderPlaced": "Yesterday, 16:30 - Order placed and verified",
+      "readyToShip": "Yesterday, 18:00 - Master gardener inspection cleared",
+      "shipped": "Today, 06:30 - Dispatched from Central Greenhouse Nursery Hub",
+      "outForDelivery": "In transit to Nagpur South Delivery Station",
+      "delivered": "Expected delivery tomorrow"
+    }
+  },
+  {
+    "id": "PNS-77412",
+    "customer": "Pooja Sharma",
+    "phone": "9823011223",
+    "address": "B-24 Orchid Towers, Dharampeth, Nagpur, Maharashtra, 440010",
+    "plant": "Peace Lily 'Sensation', Self-Watering Planter",
+    "items": [
+      {
+        "id": "peace-lily-sensacion",
+        "name": "Peace Lily 'Sensation'",
+        "quantity": 1,
+        "price": 32,
+        "potSize": "Standard 8-inch",
+        "image": "https://images.unsplash.com/photo-1593482892290-f54927ae1bf6?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "self-watering-planter",
+        "name": "Smart Self-Watering Planter with Foliage",
+        "quantity": 1,
+        "price": 34,
+        "potSize": "Self-Watering 8-inch",
+        "image": "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "amount": 66,
+    "status": "out-for-delivery",
+    "date": "Today, 09:10",
+    "carrier": "EcoGreen Local Delivery (Driver: Rahul - +91 98230 44556)",
+    "trackingNumber": "EGL-LOCAL-339",
+    "estimatedDelivery": "Today within 2 Hours",
+    "stages": {
+      "orderPlaced": "Yesterday, 10:15 - Order placed successfully",
+      "readyToShip": "Yesterday, 14:00 - Moisture-lock packaging complete",
+      "shipped": "Yesterday, 20:00 - Arrived at Nagpur Hub",
+      "outForDelivery": "Today, 09:10 - Out for delivery with courier agent Rahul",
+      "delivered": "Expected by 18:00 today"
+    }
+  },
+  {
+    "id": "PNS-8921",
+    "customer": "Naman Agrawal",
+    "phone": "9876501234",
+    "address": "Green Park Society, Wardha Road, Nagpur, Maharashtra, 440015",
+    "plant": "Monstera Deliciosa (x2), Heritage Brass Mist Can",
+    "items": [
+      {
+        "id": "monstera-deliciosa",
+        "name": "Monstera Deliciosa",
+        "quantity": 2,
+        "price": 38,
+        "potSize": "Standard 8-inch",
+        "image": "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "brass-watering-can",
+        "name": "Heritage Brass Mist & Pour Can",
+        "quantity": 1,
+        "price": 42,
+        "potSize": "Solid Spun Brass",
+        "image": "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "amount": 118,
+    "status": "delivered",
+    "date": "Yesterday, 17:40",
+    "carrier": "EcoGreen Logistics",
+    "trackingNumber": "EGL-5510291",
+    "estimatedDelivery": "Delivered Yesterday",
+    "stages": {
+      "orderPlaced": "10 Oct, 11:00 - Order placed and paid via UPI",
+      "readyToShip": "10 Oct, 15:30 - Inspected and boxed in shock-absorbing carton",
+      "shipped": "11 Oct, 08:00 - Handed to courier partner",
+      "outForDelivery": "Yesterday, 13:00 - Courier agent arrived in locality",
+      "delivered": "Yesterday, 17:40 - Handed directly to customer (14-Day Guarantee active)"
+    }
+  }
+]

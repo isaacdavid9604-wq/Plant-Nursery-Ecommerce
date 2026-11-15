@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Details - Plant Nursery Store</title>
+  <meta name="description" content="Detailed plant profile, nursery care instructions, watering frequency, sunlight requirements, and potting guidelines.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom Botanical Theme CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement text-center">
+    <div class="container">
+      🌱 <strong>Plant Doctor Hotline:</strong> Free care assistance included with every living plant order!
+    </div>
+  </div>
+
+  <!-- Shared Navbar -->
+  <header>
+    <nav class="navbar navbar-expand-lg botanical-navbar sticky-top">
+      <div class="container">
+        <!-- Brand Logo -->
+        <a class='navbar-brand' href='index.html'>
+          <span class="brand-icon">
+            <i class="bi bi-flower1"></i>
+          </span>
+          Plant Nursery
+        </a>
+
+        <!-- Mobile Toggler -->
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#botanicalNav" aria-controls="botanicalNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links & Search -->
+        <div class="collapse navbar-collapse" id="botanicalNav">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-1">
+            <li class="nav-item">
+              <a class='nav-link' href='index.html'>Home</a>
+            </li>
+            <li class="nav-item">
+              <a class='nav-link' href='shop.html'>Shop Plants</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link active' href='product-detail.html?id=monstera-deliciosa'>Care & Details</a>
+            </li>
+            <li class="nav-item">
+              <a class='nav-link' href='cart.html'>Cart</a>
+            </li>
+            <li class="nav-item">
+              <a class='nav-link' href='track-order.html'>
+                <i class="bi bi-geo-alt me-1"></i> Track Order
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class='nav-link' href='admin-dashboard.html'>
+                <i class="bi bi-speedometer2 me-1"></i> Admin Portal
+              </a>
+            </li>
+          </ul>
+
+          <div class="nav-actions">
+            <a class='action-icon-btn' href='cart.html' title='View Shopping Cart'>
+              <i class="bi bi-bag"></i>
+              <span class="cart-badge cart-counter-badge">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <div class="bg-white border-bottom py-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 small">
+          <li class="breadcrumb-item"><a class='text-secondary' href='index.html'>Home</a></li>
+          <li class="breadcrumb-item"><a class='text-secondary' href='shop.html'>Plants</a></li>
+          <li class="breadcrumb-item active text-dark fw-semibold" id="detail-breadcrumb-name" aria-current="page">Monstera Deliciosa</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Single Product View -->
+  <main class="py-5" id="product-detail-view">
+    <div class="container">
+      <div class="row g-5">
+        
+        <!-- Left Side: Large Product Image & Gallery -->
+        <div class="col-lg-6">
+          <div class="product-gallery-main">
+            <img id="detail-main-img" src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=800&q=80" alt="Plant Product">
+          </div>
+          <!-- Thumbnail Row -->
+          <div class="gallery-thumbs" id="detail-thumbs-container">
+            <!-- Populated by JS -->
+          </div>
+          <div class="d-flex align-items-center justify-content-between p-3 mt-3 bg-white border rounded-3 text-secondary small">
+            <span><i class="bi bi-shield-check text-success me-1"></i> 100% Healthy Plant Promise</span>
+            <span><i class="bi bi-box-seam text-success me-1"></i> Eco-Safe Packaging</span>
+          </div>
+        </div>
+
+        <!-- Right Side: Details, Pricing, Care & Add to Cart -->
+        <div class="col-lg-6">
+          
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="badge bg-success-subtle text-success px-3 py-1 rounded-pill" id="detail-category-badge">Indoor Plant</span>
+            <span id="detail-stock-badge" class="badge bg-success-subtle text-success border border-success px-3 py-1 rounded-pill">
+              <i class="bi bi-check-circle-fill me-1"></i> In Stock
+            </span>
+          </div>
+
+          <h1 class="font-heading display-5 mb-1" id="detail-title">Monstera Deliciosa</h1>
+          <p class="text-muted fst-italic mb-3" id="detail-scientific">Monstera deliciosa</p>
+
+          <!-- Rating Stars -->
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="text-warning">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+            </div>
+            <span class="fw-semibold text-dark">4.9 / 5.0</span>
+            <span class="text-secondary small" id="detail-rating-count">(128 verified customer reviews)</span>
+          </div>
+
+          <!-- Price -->
+          <div class="d-flex align-items-baseline gap-3 mb-3">
+            <span class="font-heading display-6 fw-bold text-success" id="detail-price">$38.00</span>
+            <span class="text-muted fs-5 text-decoration-line-through" id="detail-old-price">$48.00</span>
+            <span class="badge bg-danger-subtle text-danger">Save 20%</span>
+          </div>
+
+          <!-- Description -->
+          <p class="text-secondary mb-4 leading-relaxed" id="detail-description">
+            Famous for its natural leaf-holes, the Monstera Deliciosa adds an iconic tropical statement to any living space. It is exceptionally resilient and thrives in bright, indirect light.
+          </p>
+
+          <!-- Pot Size Selection -->
+          <div class="mb-4">
+            <label class="form-label fw-bold text-dark small text-uppercase letter-spacing-1">Select Ceramic Pot Size:</label>
+            <div class="d-flex flex-wrap gap-2">
+              <input type="radio" class="btn-check" name="pot-size-option" id="size-sm" value="Small 6-inch" autocomplete="off">
+              <label class="btn btn-outline-secondary btn-sm px-3 rounded-pill" for="size-sm">Small 6"</label>
+
+              <input type="radio" class="btn-check" name="pot-size-option" id="size-md" value="Standard 8-inch" autocomplete="off" checked>
+              <label class="btn btn-outline-secondary btn-sm px-3 rounded-pill" for="size-md">Standard 8" (Recommended)</label>
+
+              <input type="radio" class="btn-check" name="pot-size-option" id="size-lg" value="Large 10-inch" autocomplete="off">
+              <label class="btn btn-outline-secondary btn-sm px-3 rounded-pill" for="size-lg">Large 10"</label>
+            </div>
+          </div>
+
+          <!-- Crucial Feature: Distinct Care Instructions with Icons -->
+          <div class="care-instructions-card">
+            <div class="care-instructions-title">
+              <i class="bi bi-heart-pulse-fill"></i> Quick Plant Care Instructions
+            </div>
+            <div class="care-grid">
+              
+              <div class="care-item">
+                <div class="care-icon">
+                  <i class="bi bi-sun"></i>
+                </div>
+                <span class="care-label">Sunlight</span>
+                <span class="care-value" id="care-sunlight">Bright, Indirect</span>
+              </div>
+
+              <div class="care-item">
+                <div class="care-icon">
+                  <i class="bi bi-droplet-half"></i>
+                </div>
+                <span class="care-label">Watering</span>
+                <span class="care-value" id="care-watering">Every 1-2 Weeks</span>
+              </div>
+
+              <div class="care-item">
+                <div class="care-icon">
+                  <i class="bi bi-award"></i>
+                </div>
+                <span class="care-label">Difficulty</span>
+                <span class="care-value" id="care-difficulty">Beginner</span>
+              </div>
+
+              <div class="care-item">
+                <div class="care-icon">
+                  <i class="bi bi-shield-slash"></i>
+                </div>
+                <span class="care-label">Pet Friendly</span>
+                <span class="care-value" id="care-pets">Toxic to Pets</span>
+              </div>
+
+              <div class="care-item">
+                <div class="care-icon">
+                  <i class="bi bi-thermometer-sun"></i>
+                </div>
+                <span class="care-label">Ideal Temp</span>
+                <span class="care-value" id="care-temp">18°C - 30°C</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Quantity Stepper & Add to Cart -->
+          <div class="d-flex flex-wrap align-items-center gap-3 pt-2">
+            <div class="quantity-stepper">
+              <button class="stepper-btn" id="detail-qty-dec" type="button">-</button>
+              <input type="text" class="stepper-input" id="detail-qty-input" value="1" readonly>
+              <button class="stepper-btn" id="detail-qty-inc" type="button">+</button>
+            </div>
+
+            <button class="btn btn-botanical btn-lg flex-grow-1" id="detail-add-to-cart-btn" type="button">
+              <i class="bi bi-cart-plus me-2"></i> Add to Cart
+            </button>
+
+            <button class="action-icon-btn quick-wishlist-btn" title="Add to Wishlist" type="button" data-id="monstera-deliciosa">
+              <i class="bi bi-heart"></i>
+            </button>
+          </div>
+
+          <div class="mt-4 pt-3 border-top small text-secondary">
+            <span class="me-3"><i class="bi bi-truck me-1"></i> Dispatched within 24 hours</span>
+            <span><i class="bi bi-arrow-repeat me-1"></i> 14-day free replacements</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tabbed Information Section -->
+      <div class="row mt-5 pt-4">
+        <div class="col-12">
+          <div class="bg-white border rounded-4 p-4 shadow-sm">
+            <ul class="nav nav-tabs border-bottom mb-4" id="plantTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active fw-semibold" id="guide-tab" data-bs-toggle="tab" data-bs-target="#guide" type="button" role="tab">Detailed Care Guide</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link fw-semibold" id="potting-tab" data-bs-toggle="tab" data-bs-target="#potting" type="button" role="tab">Potting & Soil Mix</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link fw-semibold" id="shipping-tab" data-bs-toggle="tab" data-bs-target="#shipping" type="button" role="tab">Safe Shipping Guarantee</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link fw-semibold" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">Reviews (128)</button>
+              </li>
+            </ul>
+
+            <div class="tab-content" id="plantTabContent">
+              <!-- Care Guide Tab -->
+              <div class="tab-pane fade show active" id="guide" role="tabpanel">
+                <h4 class="font-heading mb-3">How to Keep Your Plant Thriving</h4>
+                <div class="row g-4">
+                  <div class="col-md-4">
+                    <h6 class="fw-bold text-success"><i class="bi bi-brightness-high me-1"></i> Lighting Dynamics</h6>
+                    <p class="text-secondary small">Position within 3 to 6 feet of an east or south-facing window. Avoid harsh scorching direct noon sunlight which can burn delicate foliage.</p>
+                  </div>
+                  <div class="col-md-4">
+                    <h6 class="fw-bold text-success"><i class="bi bi-droplet me-1"></i> Soil Hydration Rule</h6>
+                    <p class="text-secondary small">Insert your index finger 2 inches into the soil. Water thoroughly only when the top layer feels bone dry. Always empty the bottom drip tray.</p>
+                  </div>
+                  <div class="col-md-4">
+                    <h6 class="fw-bold text-success"><i class="bi bi-wind me-1"></i> Humidity & Cleaning</h6>
+                    <p class="text-secondary small">Wipe leaves gently with a damp microfiber cloth monthly to clean dust and allow the plant to maximize chlorophyll photosynthesis.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Potting Tab -->
+              <div class="tab-pane fade" id="potting" role="tabpanel">
+                <h4 class="font-heading mb-3">Recommended Soil & Repotting Schedule</h4>
+                <p class="text-secondary">
+                  Our nursery plants arrive in an airy, aerated blend containing coconut coir, perlite, organic worm castings, and pine bark. We recommend repotting every 18 to 24 months into a container that is approximately 2 inches wider in diameter.
+                </p>
+              </div>
+
+              <!-- Shipping Tab -->
+              <div class="tab-pane fade" id="shipping" role="tabpanel">
+                <h4 class="font-heading mb-3">Engineered for Safe Botanical Transit</h4>
+                <p class="text-secondary">
+                  Every living plant is locked into place using corrugated cardboard collars that hold the root ball securely without spilling soil. Roots are wrapped in moisture-preserving coco wraps, ensuring the plant stays hydrated for up to 7 days in transit.
+                </p>
+              </div>
+
+              <!-- Reviews Tab -->
+              <div class="tab-pane fade" id="reviews" role="tabpanel">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                  <h4 class="font-heading mb-0">Customer Experiences</h4>
+                  <button class="btn btn-sm btn-botanical-outline" onclick="showToast('Review submitted!', 'Thank you for sharing your botanical feedback.', 'success');">
+                    Write a Review
+                  </button>
+                </div>
+
+                <div class="border-bottom pb-3 mb-3">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <strong>Priya S. — Verified Buyer</strong>
+                    <div class="text-warning small"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                  </div>
+                  <p class="text-secondary small mb-1 mt-1">"Arrived in pristine condition! Leaf fenestrations are gorgeous and the care card on the box made unpacking a joy."</p>
+                  <span class="text-muted" style="font-size: 0.75rem;">Reviewed 3 days ago</span>
+                </div>
+
+                <div class="border-bottom pb-3 mb-3">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <strong>Arjun M. — Verified Buyer</strong>
+                    <div class="text-warning small"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                  </div>
+                  <p class="text-secondary small mb-1 mt-1">"Great size and fast delivery to Nagpur. Already putting out a brand new leaf after 10 days!"</p>
+                  <span class="text-muted" style="font-size: 0.75rem;">Reviewed 1 week ago</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Plants Grid -->
+      <div class="mt-5 pt-4">
+        <h3 class="font-heading display-6 mb-4">You Might Also Love</h3>
+        <div class="row" id="related-products-container">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Shared Botanical Footer -->
+  <footer class="botanical-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand">
+            Plant <span>Nursery</span> Store
+          </div>
+          <p class="footer-text">
+            Connecting botanical enthusiasts with healthy, farm-fresh plants, organic seeds, and sustainable gardening essentials. Promoting environmental wellness and green living spaces.
+          </p>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-6">
+          <h5 class="footer-title">Navigation</h5>
+          <ul class="footer-links">
+            <li><a href='index.html'>Home</a></li>
+            <li><a href='shop.html'>Shop Catalog</a></li>
+            <li><a href='product-detail.html?id=monstera-deliciosa'>Care Guide</a></li>
+            <li><a href='cart.html'>View Cart</a></li>
+            <li><a href='track-order.html'>Track Order</a></li>
+            <li><a href='admin-dashboard.html'>Admin Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-6">
+          <h5 class="footer-title">Categories</h5>
+          <ul class="footer-links">
+            <li><a href='shop.html?category=indoor'>Indoor Plants</a></li>
+            <li><a href='shop.html?category=outdoor'>Outdoor Garden</a></li>
+            <li><a href='shop.html?category=seeds'>Organic Seeds</a></li>
+            <li><a href='shop.html?category=accessories'>Accessories & Tools</a></li>
+            <li><a href='shop.html'>All Botanical Flora</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-title">Academic Project</h5>
+          <p class="footer-text mb-2">
+            <strong>Ramdeobaba University</strong> — Dept. of CSE<br>
+            <em>Project Synopsis Session 2026-27 | 5th Semester</em>
+          </p>
+          <p class="small text-secondary mb-0">
+            <strong>Team:</strong> Naman Agrawal (51), Isaac David (64), Sara Ahmed (65)
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <div>
+          © 2026 Plant Nursery Store. All Rights Reserved.
+        </div>
+        <div class="mt-2 mt-md-0">
+          <span class="text-white-50">Botanical Commerce Design System</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Core JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>

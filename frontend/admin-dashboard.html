@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Plant Nursery Store</title>
+  <meta name="description" content="Nursery administration portal for managing inventory, tracking botanical sales, and processing customer orders.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom Botanical Theme CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+
+  <div class="admin-layout">
+    
+    <!-- Fixed Left Navigation Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-sidebar-header d-flex align-items-center justify-content-between">
+        <a class='text-white text-decoration-none d-flex align-items-center gap-2' href='index.html'>
+          <div class="brand-icon" style="background: rgba(255,255,255,0.15); color: #95D5B2;">
+            <i class="bi bi-flower1"></i>
+          </div>
+          <div>
+            <h5 class="mb-0 font-heading text-white fs-5">Plant Nursery</h5>
+            <small class="text-secondary" style="font-size: 0.75rem; color: #74C69D !important;">Admin Management</small>
+          </div>
+        </a>
+      </div>
+
+      <!-- Navigation Links -->
+      <ul class="admin-nav-list">
+        <li class="admin-nav-item active">
+          <a href='admin-dashboard.html'>
+            <i class="bi bi-grid-fill"></i>
+            <span>Overview Dashboard</span>
+          </a>
+        </li>
+        <li class="admin-nav-item">
+          <a href="#orders-section">
+            <i class="bi bi-receipt"></i>
+            <span>Customer Orders</span>
+          </a>
+        </li>
+        <li class="admin-nav-item">
+          <a href="track-order.html">
+            <i class="bi bi-geo-alt-fill"></i>
+            <span>Track Live Order</span>
+          </a>
+        </li>
+        <li class="admin-nav-item">
+          <a href="#" onclick="showToast('Inventory View', 'Live inventory synchronized with master catalog.', 'info'); return false;">
+            <i class="bi bi-tree-fill"></i>
+            <span>Plant Inventory</span>
+          </a>
+        </li>
+        <li class="admin-nav-item">
+          <a href="#" onclick="showToast('Customer Directory', 'Customer totals are shown on the dashboard.', 'info'); return false;">
+            <i class="bi bi-people-fill"></i>
+            <span>Customers</span>
+          </a>
+        </li>
+        <li class="admin-nav-item">
+          <a href="#" onclick="showToast('Analytics Report', 'Sales by category is shown on the dashboard.', 'info'); return false;">
+            <i class="bi bi-graph-up-arrow"></i>
+            <span>Sales & Analytics</span>
+          </a>
+        </li>
+        <li class="admin-nav-item">
+          <a href="#" onclick="showToast('Nursery Config', 'Eco-packaging and delivery rules loaded.', 'info'); return false;">
+            <i class="bi bi-gear-fill"></i>
+            <span>Store Settings</span>
+          </a>
+        </li>
+
+        <li class="admin-nav-item mt-4 pt-3 border-top border-white-50">
+          <a class='text-white' href='index.html'>
+            <i class="bi bi-arrow-left-circle-fill text-secondary"></i>
+            <span>View Public Store</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Admin Profile Box at bottom -->
+      <div class="p-3 border-top border-white-50" style="background: rgba(0,0,0,0.2);">
+        <div class="d-flex align-items-center gap-2">
+          <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center fw-bold" style="width: 38px; height: 38px; font-size: 0.9rem;">
+            NA
+          </div>
+          <div class="overflow-hidden">
+            <div class="text-white small fw-bold text-truncate">Naman Agrawal</div>
+            <div class="text-white-50" style="font-size: 0.72rem;">Admin (CSE Roll 51)</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-content">
+      
+      <!-- Top Bar -->
+      <div class="admin-topbar">
+        <div class="d-flex align-items-center gap-3">
+          <!-- Mobile Sidebar Toggle -->
+          <button class="btn btn-light d-lg-none border" id="admin-sidebar-toggle" type="button">
+            <i class="bi bi-list fs-5"></i>
+          </button>
+          <div>
+            <h1 class="font-heading fs-4 mb-0">Nursery Operations Dashboard</h1>
+            <p class="text-muted small mb-0">Ramdeobaba University CSE Dept — Plant Nursery Store Project</p>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <!-- Notification Bell -->
+          <button class="action-icon-btn position-relative" title="Notifications" onclick="document.getElementById('stock-alert-tbody').scrollIntoView({behavior:'smooth'});">
+            <i class="bi bi-bell"></i>
+            <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+          </button>
+
+          <button class="btn btn-outline-secondary btn-sm" id="admin-signout-btn" type="button"><i class="bi bi-box-arrow-right me-1"></i> Sign out</button>
+
+          <!-- Add Product Action -->
+          <button class="btn btn-botanical btn-sm" data-bs-toggle="modal" data-bs-target="#addProductModal">
+            <i class="bi bi-plus-lg me-1"></i> Add New Plant
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Top-Level Metric Cards -->
+      <div class="row g-4 mb-4">
+        
+        <!-- Total Sales -->
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="metric-card">
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="text-muted small fw-semibold text-uppercase">Total Sales</span>
+              <div class="metric-icon-box green">
+                <i class="bi bi-currency-dollar"></i>
+              </div>
+            </div>
+            <div class="metric-value" id="stat-total-sales">…</div>
+            <div class="metric-trend up">
+              <i class="bi bi-arrow-up-right"></i> Live from orders <span class="text-muted fw-normal">(excl. cancelled)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Orders -->
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="metric-card">
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="text-muted small fw-semibold text-uppercase">Active Orders</span>
+              <div class="metric-icon-box blue">
+                <i class="bi bi-box2"></i>
+              </div>
+            </div>
+            <div class="metric-value" id="stat-active-orders">…</div>
+            <div class="metric-trend up">
+              <i class="bi bi-arrow-up-right"></i> <span id="stat-new-today">+0 new today</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Low Stock Alert -->
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="metric-card">
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="text-muted small fw-semibold text-uppercase">Low Stock Alert</span>
+              <div class="metric-icon-box amber">
+                <i class="bi bi-exclamation-triangle"></i>
+              </div>
+            </div>
+            <div class="metric-value text-danger" id="stat-low-stock">…</div>
+            <div class="metric-trend down">
+              <i class="bi bi-arrow-down-right"></i> <span id="stat-low-stock-note">Checking…</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total Customers -->
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="metric-card">
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="text-muted small fw-semibold text-uppercase">Total Customers</span>
+              <div class="metric-icon-box purple">
+                <i class="bi bi-people"></i>
+              </div>
+            </div>
+            <div class="metric-value" id="stat-customers">…</div>
+            <div class="metric-trend up">
+              <i class="bi bi-arrow-up-right"></i> Unique phone numbers
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Inventory Alerts & Category Breakdown Summary -->
+      <div class="row g-4 mb-4">
+        
+        <!-- Inventory Quick Restock Watchlist -->
+        <div class="col-lg-7">
+          <div class="bg-white border rounded-4 p-4 shadow-sm h-100">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h5 class="font-heading mb-0 fs-5">Critical Stock Depletion Alert</h5>
+              <span class="badge bg-danger-subtle text-danger px-3 py-1 rounded-pill">Urgent Action</span>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle table-hover small">
+                <thead>
+                  <tr class="text-muted">
+                    <th>Plant Variety</th>
+                    <th>Category</th>
+                    <th>Current Stock</th>
+                    <th>Status</th>
+                    <th class="text-end">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="stock-alert-tbody"><tr><td colspan="5" class="text-center text-muted py-3">Loading…</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sales Distribution Preview -->
+        <div class="col-lg-5">
+          <div class="bg-white border rounded-4 p-4 shadow-sm h-100">
+            <h5 class="font-heading mb-3 fs-5">Sales by Flora Category</h5>
+            <div id="category-sales-container"><div class="text-muted small">Loading…</div></div>
+
+            <div class="mt-4 pt-3 border-top small text-muted">
+              <i class="bi bi-lightbulb-fill text-warning me-1"></i> <span id="top-product-note">Loading…</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Recent Orders Bootstrap Table Section -->
+      <div class="bg-white border rounded-4 p-4 shadow-sm" id="orders-section">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+          <div>
+            <h4 class="font-heading fs-5 mb-1">Recent Customer Orders</h4>
+            <p class="text-muted small mb-0">Showing latest orders placed through the client storefront.</p>
+          </div>
+
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <!-- Search Filter -->
+            <div class="position-relative">
+              <input type="text" id="admin-order-search" class="form-control form-control-sm rounded-pill pe-4" placeholder="Search orders..." style="min-width: 200px;">
+              <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3 text-muted small"></i>
+            </div>
+
+            <!-- Status Filter -->
+            <select id="admin-order-filter" class="form-select form-select-sm rounded-pill" style="width: auto;">
+              <option value="all">All Statuses</option>
+              <option value="completed">Completed</option>
+              <option value="processing">Processing</option>
+              <option value="shipped">Shipped</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Orders Table -->
+        <div class="table-responsive">
+          <table class="table align-middle table-hover">
+            <thead class="bg-light">
+              <tr class="small text-uppercase text-muted">
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Plants Ordered</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-orders-tbody">
+              <!-- Dynamically populated by main.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center pt-3 border-top small text-muted">
+          <span>Showing 6 most recent orders</span>
+          <nav aria-label="Order pagination">
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item disabled"><a class="page-link" href="#">Prev</a></li>
+              <li class="page-item active"><a class="page-link bg-success border-success" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Add Product Modal -->
+  <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+        <div class="modal-header border-bottom px-4 pt-4">
+          <h5 class="modal-title font-heading fs-5" id="addProductModalLabel">
+            <i class="bi bi-plus-circle text-success me-1"></i> Add New Plant to Catalog
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <form id="admin-add-product-form">
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-dark">Plant Common Name *</label>
+              <input type="text" id="new-plant-name" class="form-control" placeholder="e.g. Golden Pothos" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-dark">Category *</label>
+              <select id="new-plant-category" class="form-select" required>
+                <option value="indoor">Indoor Plants</option>
+                <option value="outdoor">Outdoor Garden</option>
+                <option value="seeds">Heirloom Seeds</option>
+                <option value="accessories">Accessories & Tools</option>
+              </select>
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-semibold text-dark">Price ($) *</label>
+                <input type="number" id="new-plant-price" step="0.5" class="form-control" placeholder="28.00" required>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-semibold text-dark">Stock Quantity *</label>
+                <input type="number" id="new-plant-stock" class="form-control" placeholder="25" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-dark">Sunlight Requirement</label>
+              <input type="text" class="form-control" placeholder="Indirect Bright Light">
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-dark">Watering Interval</label>
+              <input type="text" class="form-control" placeholder="Every 7-10 Days">
+            </div>
+
+            <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top">
+              <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-botanical btn-sm px-4">
+                Save Plant
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Core JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>
